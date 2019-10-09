@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "981025281480",
+    "firebase_url": "https://com-ich-landing.firebaseio.com",
+    "project_id": "com-ich-landing",
+    "storage_bucket": "com-ich-landing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981025281480:android:cba57d3804e03110",
+        "android_client_info": {
+          "package_name": "com.ich.game.Langin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981025281480-tpn0gmlakfn0bkjjkqe73hkojk3nie4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCavM8xoOaOKLakWkYgNwP9gMeCoa8hKP0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
