@@ -1,6 +1,7 @@
 ﻿using Common;
 using Game;
-using Game.Models;
+using Models;
+using strange.extensions.context.api;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,26 +11,31 @@ namespace Scenes
     public class GameScene : BaseScene
     {
         [SerializeField]
+        private GameSettings m_GameSettings;
+
+        [SerializeField]
         private ModuleView ModuleView;
 
         [SerializeField]
         private CollisionController CollisionCtrl;
 
         [SerializeField]
-        private FuelController FuelCtrl;
-
-        [SerializeField]
         private GraphicRaycaster Raycaster;
 
         [SerializeField]
-        private InputController InputCtrl;
+        private InputView InputCtrl;
+
+        [SerializeField]
+        private Camera Camera;
 
         protected override void Initialisation()
         {
             base.Initialisation();
-            Model.Instance.Reset();
-            FuelCtrl.Init(Model.Instance.Difficulty / 1000f);
-            AddListeners();
+
+            context = new GameContext(this, ContextStartupFlags.MANUAL_MAPPING, m_GameSettings, Camera);
+            context.Start();
+            //Model.Instance.Reset();
+            //FuelCtrl.Init(Model.Instance.Difficulty / 1000f);
         }
 
         protected override void GoToNextScene()
@@ -40,7 +46,7 @@ namespace Scenes
         public void OnCollision_Good()
         {
             print("Good work!");
-            Model.Instance.SetResults(true, 1000);
+            //Model.Instance.SetResults(true, 1000);
             ModuleView.ShowGoodView();
             StartCoroutine(SwitchToNextScene());
         }
@@ -48,20 +54,13 @@ namespace Scenes
         public void OnColision_Bad()
         {
             print("You can better!");
-            Model.Instance.SetResults(false, 0);
+            //Model.Instance.SetResults(false, 0);
             ModuleView.ShowBadView();
             StartCoroutine(SwitchToNextScene());
         }
 
-        private void OnFuelEmpty()
-        {
-            InputCtrl.enabled = false;
-            Raycaster.enabled = false;
-        }
-
         private IEnumerator SwitchToNextScene()
         {
-            RemoveListeners();
             CollisionCtrl.enabled = false;
             Raycaster.enabled = false;
             InputCtrl.enabled = false;
@@ -69,22 +68,9 @@ namespace Scenes
             GoToNextScene();
         }
 
-        private void AddListeners()
+        protected override void OnDestroy()
         {
-            CollisionCtrl.OnBadCollision += OnColision_Bad;
-            CollisionCtrl.OnGoodCollision += OnCollision_Good;
-            FuelCtrl.OnFuelIsEmptyEvent += OnFuelEmpty;
-        }
-
-        private void RemoveListeners()
-        {
-            CollisionCtrl.OnBadCollision -= OnColision_Bad;
-            CollisionCtrl.OnGoodCollision -= OnCollision_Good;
-        }
-
-        private void OnDestroy()
-        {
-            RemoveListeners();
+            base.OnDestroy();
         }
     }
 }

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using strange.extensions.mediation.impl;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game
 {
-    public class CollisionController : MonoBehaviour
+    public class CollisionController : EventView
     {
-        public event Action OnGoodCollision;
-        public event Action OnBadCollision;
+        public static string GOOD_COLLISION = "GOOD_COLLISION";
+        public static string BAD_COLLISION = "BAD_COLLISION";
 
         [SerializeField]
         private Vector2 MaxVelocity = new Vector2(0.2f, 1);
@@ -25,13 +22,13 @@ namespace Game
 
             if (dist > Threshold)
             {
-                if (OnBadCollision != null)
-                    OnBadCollision();
+                Debug.Log("Bad collision");
+                dispatcher.Dispatch(BAD_COLLISION);
             }
             else
             {
-                if (OnGoodCollision != null)
-                    OnGoodCollision();
+                Debug.Log("Good collision");
+                dispatcher.Dispatch(GOOD_COLLISION);
             }
         }
     }

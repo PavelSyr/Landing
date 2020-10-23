@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Launch;
 
 namespace Scenes
 {
@@ -9,14 +7,8 @@ namespace Scenes
         protected override void Initialisation()
         {
             base.Initialisation();
-            Firebase.Analytics.FirebaseAnalytics.LogEvent(Firebase.Analytics.FirebaseAnalytics.EventAppOpen);
-            GoToNextScene();
-        }
 
-        protected override void GoToNextScene()
-        {
-            base.GoToNextScene();
-            Common.SceneNavigation.GoToHome();
+            context = new LaunchContext(this);
         }
     }
 }

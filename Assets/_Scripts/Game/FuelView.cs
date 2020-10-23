@@ -1,21 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using strange.extensions.mediation.impl;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game
 {
-    public class FuelView : MonoBehaviour
+    public class FuelView : View
     {
-        [SerializeField]
-        private FuelController fuelCtrl;
-
         [SerializeField]
         private Slider fuelSlider;
 
-        private void Update()
+        public void UpdateView(float fuelValue)
         {
-            fuelSlider.value = fuelCtrl.Total;
+            fuelSlider.value = fuelValue;
         }
     }
 }

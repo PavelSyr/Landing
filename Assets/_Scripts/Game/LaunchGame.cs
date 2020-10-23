@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -8,9 +7,6 @@ namespace Game
     {
         private const int LOUNCHES = 1;
         private static int CountLounches = 0;
-
-        [SerializeField]
-        private InputController InputCtrl;
 
         [SerializeField]
         private Rigidbody2D ModuleRigidBody;
@@ -24,7 +20,7 @@ namespace Game
 
             CountDownView.SetActive(true);
             CountDownView.SetWaitText(string.Empty);
-            InputCtrl.enabled = false;
+            //InputCtrl.enabled = false;
             ModuleRigidBody.simulated = false;
         }
 
@@ -43,7 +39,7 @@ namespace Game
         private void Launch()
         {
             CountDownView.SetActive(false);
-            InputCtrl.enabled = true;
+            //InputCtrl.enabled = true;
             ModuleRigidBody.simulated = true;
             DestroyImmediate(this);
             Destroy(CountDownView.gameObject);

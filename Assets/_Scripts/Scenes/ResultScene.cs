@@ -1,9 +1,5 @@
 ﻿using Common;
 using Firebase.Analytics;
-using Game.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scenes
@@ -23,14 +19,14 @@ namespace Scenes
             base.Initialisation();
             FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLevelEnd);
 
-            if (Model.Instance.IsWin)
-            {
-                SetState(State.Win);
-            }
-            else
-            {
-                SetState(State.Lose);
-            }
+            //if (Model.Instance.IsWin)
+            //{
+            //    SetState(State.Win);
+            //}
+            //else
+            //{
+            //    SetState(State.Lose);
+            //}
         }
 
         protected override void GoToNextScene()
@@ -59,14 +55,14 @@ namespace Scenes
 
         private void ShowWin()
         {
-            FirebaseAnalytics.LogEvent("Win", "Difficalty", Model.Instance.Difficulty);
+            //FirebaseAnalytics.LogEvent("Win", "Difficalty", Model.Instance.Difficulty);
             LoseView.SetActive(false);
             WinView.SetActive(true);
         }
 
         private void ShowLose()
         {
-            FirebaseAnalytics.LogEvent("Lose", "Difficalty", Model.Instance.Difficulty);
+            //FirebaseAnalytics.LogEvent("Lose", "Difficalty", Model.Instance.Difficulty);
             LoseView.SetActive(true);
             WinView.SetActive(false);
         }

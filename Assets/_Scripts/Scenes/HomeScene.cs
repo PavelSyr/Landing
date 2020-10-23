@@ -1,21 +1,16 @@
-﻿using Game.Models;
-using System.Collections.Generic;
+﻿using Home;
 using UnityEngine;
 
 namespace Scenes
 {
     public class HomeScene : BaseScene
     {
-        [SerializeField]
-        private GameObject MainMenu;
-
-        [SerializeField]
-        private GameObject DifficaltyMenu;
-
         protected override void Initialisation()
         {
             base.Initialisation();
-            ShowMainMenu();
+            context = new HomeContext(this);
+
+            //ShowMainMenu();
         }
 
         public void GoButton_OnClick()
@@ -25,7 +20,7 @@ namespace Scenes
 
         public void Difficalty_OnClick(int value)
         {
-            Model.Instance.SetDifficulty(value);
+            //Model.Instance.SetDifficulty(value);
             GoToNextScene();
         }
 
@@ -36,14 +31,14 @@ namespace Scenes
 
         private void ShowDifficaltyView()
         {
-            MainMenu.SetActive(false);
-            DifficaltyMenu.SetActive(true);
+            //MainMenu.SetActive(false);
+            //DifficaltyMenu.SetActive(true);
         }
 
         private void ShowMainMenu()
         {
-            MainMenu.SetActive(true);
-            DifficaltyMenu.SetActive(false);
+            //MainMenu.SetActive(true);
+            //DifficaltyMenu.SetActive(false);
         }
 
         protected override void GoToNextScene()

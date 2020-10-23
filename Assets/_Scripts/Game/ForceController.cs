@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game
 {
     public class ForceController : MonoBehaviour
     {
-        public float Force = 5f;
+        public float Force = 5000f;
         private Vector3 LEFT  { get { return m_Transform.right * -1; } }
         private Vector3 RIGHT { get { return m_Transform.right; } }
         private Vector3 UP    { get { return m_Transform.up; } }
